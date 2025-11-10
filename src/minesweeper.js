@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../lib');
+const { NotImplementedError } = require("../lib");
 
 /**
  * In the popular Minesweeper game you have a board with some mines and those cells
@@ -23,11 +23,33 @@ const { NotImplementedError } = require('../lib');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  // Remove line below and write your code here
-  throw new NotImplementedError('Not implemented');
+function minesweeper(matrix) {
+  function countMines(matrix, row, col) {
+    let valueOfMines = 0;
+    for (let i = row - 1; i <= row + 1; i += 1) {
+      for (let j = col - 1; j <= col + 1; j += 1) {
+        if (i >= 0 && i <= matrix.length - 1) {
+          if (j >= 0 && j <= matrix[i].length) {
+            if (matrix[i][j] === true) {
+              valueOfMines += 1;
+            }
+          }
+        }
+      }
+    }
+    return valueOfMines;
+  }
+  let newMatrix = [];
+  for (let i = 0; i < matrix.length; i += 1) {
+    newMatrix[i] = [];
+    for (let j = 0; j < matrix[i].length; j += 1) {
+      const valueMat = countMines(matrix, i, j);
+      newMatrix[i][j] = matrix[i][j] ? valueMat - 1 : valueMat;
+    }
+  }
+  return newMatrix;
 }
 
 module.exports = {
-  minesweeper
+  minesweeper,
 };
