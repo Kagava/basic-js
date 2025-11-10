@@ -35,7 +35,6 @@ function renameFiles(names) {
       const currentValue = `${names[i]}(${
         namesObj[names[i]] - 1 + countBracket
       })`;
-      console.log(names[i], currentValue);
       ansArray.push(currentValue);
     }
   }
